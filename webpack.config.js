@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
   entry: './src/index.js',
@@ -46,5 +47,6 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     hot: true,
+    port: 9000
   },
 };

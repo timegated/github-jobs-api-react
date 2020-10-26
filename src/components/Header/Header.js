@@ -10,7 +10,7 @@ const HeaderContainer = styled.header`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  border-radius: 0 0 0 80px;
+  border-radius: 0 0 0 100px;
   display: flex;
   flex-direction: column;
   padding: 2.5rem;

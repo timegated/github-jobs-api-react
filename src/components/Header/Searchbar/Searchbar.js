@@ -6,8 +6,9 @@ const SearchForm = styled.form`
   display: flex;
   flex-direction: row;
   top: 75px;
-  left: 15%;
-  max-width: 960px;
+  margin: auto;
+  width: 75vw;
+  max-width: 1200px;
   min-width: 320px;
   background: var(--secondary-white);
   align-items: center;
@@ -21,7 +22,8 @@ const FormGroup = styled.div`
   justify-content: space-around;
   background-color: var(--secondary-white);
   flex: 1 0 30%;
-  border-right: 3px solid var(--secondary-dark-darkgray);
+  
+  border-radius: 15px;
 
   &:last-child {
     border-right: none;
@@ -44,6 +46,7 @@ const Input = styled.input`
   font-size: 16px;
   border: none;
   outline: none;
+  border-right: 3px solid var(--secondary-dark-darkgray);
 `;
 
 const SearchButton = styled.button`
@@ -59,6 +62,9 @@ const SearchButton = styled.button`
 `;
 
 const Searchbar = () => {
+
+  // This component pulls in data from the api
+
   return (
     <>
       <SearchForm>

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap');
 
 :root {
-  --primary-violet: hsl(270deg, 100%, 51%);
+  --primary-violet: hsl(235deg, 100%, 51%);
   --primary-lightviolet: hsl(235deg, 82%, 77%);
   --primary-dark-darkblue: hsl(219deg, 29%, 14%);
   --primary-dark-midnight: hsl(220deg, 29%, 10%);
