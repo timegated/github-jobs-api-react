@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import moonIcon from '../../../assets/desktop/icon-moon.svg';
+import sunIcon from '../../../assets/desktop/icon-sun.svg';
 
 const ToggleWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: center;
 `;
 
 const ToggleBar = styled.div`
@@ -12,11 +13,10 @@ const ToggleBar = styled.div`
   align-items: center;
   overflow: hidden;
   position: relative;
-  background-color: var(--secondary-white);
+  background-color: ${props => props.toggled ? `var(--primary-violet)` : `var(--secondary-white)`};
   height: 34px;
   width: 75px;
   border-radius: 15px;
-  padding: 1rem;
   border: 1px solid var(--secondary-lightgrey);
   transform: translate3d(0, 0, 0);
 
@@ -33,26 +33,27 @@ const ToggleBall = styled.div`
   will-change: transform;
   height: 26px;
   width: 26px;
-  background-color: var(--primary-violet);
+  background-color: ${props => props.toggled ? `var(--primary-violet)` : `var(--primary-lightviolet)`};
   z-index: 2;
-  transform: ${props => props.toggled ? 'translateX(30px)' : 'translateX(0px)'};
+  transform: ${props => props.toggled ? 'translateX(45px)' : 'translateX(0px)'};
 `;
-
-const ToggleBg = styled.div``;
 
 
 const Toggle = () => {
   const [isToggled, setToggled] = useState(false);
-
+  
   const handleToggle = () => {
     setToggled(!isToggled);
   };
     return (
       <>
         <ToggleWrapper>
-          <ToggleBar onClick={handleToggle} >
+          <img src={sunIcon} alt="Sun icon for light mode" style={{ flex: '1 0 10%', width: '30px', height: '30px', marginRight: '0.5em'}}/> 
+          <ToggleBar onClick={handleToggle} toggle={isToggled} >
             <ToggleBall toggled={isToggled} />
+            
           </ToggleBar>
+          <img src={moonIcon} alt="Moon icon for dark-mode" style={{flex: '1 0 10%', width: '30px', height: '30px', marginLeft: '0.5em'}} />
         </ToggleWrapper>
         </>
     );
