@@ -6,8 +6,9 @@ const SearchForm = styled.form`
   display: flex;
   flex-direction: row;
   top: 75px;
-  left: 25%;
+  left: 15%;
   max-width: 960px;
+  min-width: 320px;
   background: var(--secondary-white);
   align-items: center;
   border-radius: 15px;
@@ -15,13 +16,16 @@ const SearchForm = styled.form`
 
 const FormGroup = styled.div`
   display: flex;
-  border-radius: 15px;
   padding: 1rem;
   flex-direction: row;
   justify-content: space-around;
   background-color: var(--secondary-white);
   flex: 1 0 30%;
-  border-right: 3px solid var(--secondary-lightgrey);
+  border-right: 3px solid var(--secondary-dark-darkgray);
+
+  &:last-child {
+    border-right: none;
+  }
 
   p {
     font-size: 12px;
