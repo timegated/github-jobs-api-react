@@ -12,13 +12,13 @@ Styled Components/Theme-ing
 
 ## Checklist:
 ### User Story 1:
-[] Search bar the top of the page
-[] User use should see and be able to interact with a search bar
-[] User should see search results displayed beneath search bar in an easy to read format
-[] User should be able to click on any one search result and see more information displayed about the job listing
+- [] Search bar the top of the page
+- [] User use should see and be able to interact with a search bar
+- [] User should see search results displayed beneath search bar in an easy to read format
+- [] User should be able to click on any one search result and see more information displayed about the job listing
 
 ### Optional:
-[] User can save/mark job postings they are interested in for later viewing
+- [] User can save/mark job postings they are interested in for later viewing
 
 ### Component Tree
 

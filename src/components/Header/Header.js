@@ -1,4 +1,5 @@
 import React from 'react';
+import Searchbar from './Searchbar/Searchbar';
 import styled from 'styled-components';
 import desktopHeaderBg from '../../assets/desktop/bg-pattern-header.svg';
 import logo from '../../assets/desktop/logo.svg';
@@ -25,6 +26,7 @@ const Header = () => {
   return (
     <HeaderContainer>
           <LogoContainer src={logo} alt="Devjobs logo" />
+          <Searchbar />
     </HeaderContainer>
   );
 };
