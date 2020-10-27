@@ -33,7 +33,7 @@ const ToggleBall = styled.div`
   will-change: transform;
   height: 26px;
   width: 26px;
-  background-color: ${props => props.toggled ? `var(--primary-violet)` : `var(--primary-lightviolet)`};
+  background-color: ${props => props.toggled ?  `var(--primary-lightviolet)` : `var(--primary-violet)`};
   z-index: 2;
   transform: ${props => props.toggled ? 'translateX(45px)' : 'translateX(0px)'};
 `;

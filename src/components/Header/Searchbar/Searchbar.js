@@ -61,22 +61,37 @@ const SearchButton = styled.button`
   }
 `;
 
-const Searchbar = () => {
 
-  // This component pulls in data from the api
+// This component pulls in data from the api
+// https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json
+
+const Searchbar = () => {
+  const [inputValue, setInputValue] = useState({
+    jobtype: '',
+    location: '',
+  });
+
+  const onChange = (e) => {
+    setInputValue({...inputValue, [e.target.name]: e.target.value});
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    // Request to api with form values
+  };
 
   return (
     <>
-      <SearchForm>
+      <SearchForm onSubmit={onSubmit}>
         <FormGroup>
-          <Input type="text" name="jobtype" placeholder="Filter by title, companies, expertise..." />
+          <Input onChange={onChange} type="text" name="jobtype" placeholder="Filter by title, companies, expertise..." />
         </FormGroup>
         <FormGroup>
-          <Input type="text" name="location" placeholder="Filter by location..." />
+          <Input onChange={onChange} type="text" name="location" placeholder="Filter by location..." />
         </FormGroup>
         <FormGroup>
           <div style={{display: 'flex', alignItems: 'center'}}>
-          <Input type="checkbox" value="Full Time Only" name="fulltime" />
+          <Input onChange={onChange} type="checkbox" value="Full Time Only" name="fulltime" />
           <p>Full Time Only</p>
           </div>
           <SearchButton>Search</SearchButton>
