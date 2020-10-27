@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { descriptionParam, locationParam } from '../../../utils/api';
 import styled from 'styled-components';
 
 const SearchForm = styled.form`
@@ -71,13 +72,29 @@ const Searchbar = () => {
     location: '',
   });
 
+  const [checked, setChecked] = useState(false);
+
+  const { jobtype, location } = inputValue;
+
   const onChange = (e) => {
     setInputValue({...inputValue, [e.target.name]: e.target.value});
+    setChecked(!checked);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // Request to api with form values
+    if(jobtype !== '' && location === '') {
+      fetch(descriptionParam + jobtype)
+      .then(response => response.json())
+      .then(result => console.log(result))
+      .catch(error => console.error(error));
+    } else if (jobtype === '' && location !== '') {
+      fetch(locationParam + location)
+        .then(response => response.json())
+        .then(result => console.log(result))
+        .catch(error => console.error(error));
+    }
+
   };
 
   return (
@@ -91,7 +108,7 @@ const Searchbar = () => {
         </FormGroup>
         <FormGroup>
           <div style={{display: 'flex', alignItems: 'center'}}>
-          <Input onChange={onChange} type="checkbox" value="Full Time Only" name="fulltime" />
+          <Input onChange={onChange} type="checkbox" value={checked ? true : false} />
           <p>Full Time Only</p>
           </div>
           <SearchButton>Search</SearchButton>
