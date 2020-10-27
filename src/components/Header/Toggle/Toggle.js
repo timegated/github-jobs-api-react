@@ -38,6 +38,7 @@ const ToggleBall = styled.div`
   transform: ${props => props.toggled ? 'translateX(45px)' : 'translateX(0px)'};
 `;
 
+// This component ultimately needs to change the background and text colors between light and dark
 
 const Toggle = () => {
   const [isToggled, setToggled] = useState(false);

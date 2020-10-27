@@ -47,7 +47,7 @@ const Input = styled.input`
   font-size: 16px;
   border: none;
   outline: none;
-  border-right: 3px solid var(--secondary-dark-darkgray);
+  border-right: 1px solid var(--secondary-dark-darkgray);
 `;
 
 const SearchButton = styled.button`
@@ -55,16 +55,12 @@ const SearchButton = styled.button`
   background:var(--primary-violet);
   color: var(--secondary-white);
   border-radius: 15px;
-  padding: 1rem 1rem;
+  padding: 1rem 2rem;
 
   &:hover {
     cursor: pointer;
   }
 `;
-
-
-// This component pulls in data from the api
-// https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json
 
 const Searchbar = () => {
   const [inputValue, setInputValue] = useState({
