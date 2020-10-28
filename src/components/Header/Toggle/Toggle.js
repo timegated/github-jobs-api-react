@@ -6,6 +6,13 @@ import sunIcon from '../../../assets/desktop/icon-sun.svg';
 const ToggleWrapper = styled.div`
   display: flex;
   align-items: center;
+  
+  .icon {
+    flex: 1 0 10%; 
+    width: 20px;
+    height: 20px;
+    margin: 0 1.5em 0 1.5em; 
+  }
 `;
 
 const ToggleBar = styled.div`
@@ -33,9 +40,9 @@ const ToggleBall = styled.div`
   will-change: transform;
   height: 26px;
   width: 26px;
-  background-color: ${props => props.toggled ?  `var(--primary-lightviolet)` : `var(--primary-violet)`};
+  background-color: ${props => props.toggled ?  `var(--primary-violet)` : `var(--primary-lightviolet)`};
   z-index: 2;
-  transform: ${props => props.toggled ? 'translateX(45px)' : 'translateX(0px)'};
+  transform: ${props => props.toggled ? 'translateX(40px)' : 'translateX(0px)'};
 `;
 
 // This component ultimately needs to change the background and text colors between light and dark
@@ -49,12 +56,11 @@ const Toggle = () => {
     return (
       <>
         <ToggleWrapper>
-          <img src={sunIcon} alt="Sun icon for light mode" style={{ flex: '1 0 10%', width: '30px', height: '30px', marginRight: '0.5em'}}/> 
+          <img className="icon" src={sunIcon} alt="Sun icon for light mode" /> 
           <ToggleBar onClick={handleToggle} toggle={isToggled} >
             <ToggleBall toggled={isToggled} />
-            
           </ToggleBar>
-          <img src={moonIcon} alt="Moon icon for dark-mode" style={{flex: '1 0 10%', width: '30px', height: '30px', marginLeft: '0.5em'}} />
+          <img className="icon" src={moonIcon} alt="Moon icon for dark-mode"  />
         </ToggleWrapper>
         </>
     );
