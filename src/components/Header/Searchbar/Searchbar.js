@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 const SearchForm = styled.form`
@@ -62,29 +63,45 @@ const SearchButton = styled.button`
 `;
 
 const Searchbar = () => {
+  // Send the local state of this component to the reducer
   const [inputValue, setInputValue] = useState({
-    jobtype: '',
+    description: '',
     location: '',
   });
 
   const [checked, setChecked] = useState(false);
+  const jobs = useSelector(state => state.jobs);
+  const dispatch = useDispatch();
 
+  console.log(jobs);
+
+  const combinedState = {
+    description: inputValue.description.trim(),
+    location: inputValue.location.trim(),
+    fulltime: checked.toString()
+  };
+  
   const onChange = (e) => {
     setInputValue({...inputValue, [e.target.name]: e.target.value});
     setChecked(!checked);
   };
 
   const onSubmit = (e) => {
+    // Request made to the API to return the jobs (array);
+    fetch(
+      `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${combinedState.description}&location=${combinedState.location}&full_time=${combinedState.fulltime}`
+    )
+      .then((res) => res.json())
+      .then((data) => dispatch({ type: 'SEARCH_ALL_PARAMS', payload: data }));
+    
     e.preventDefault();
-  
-
   };
 
   return (
     <>
       <SearchForm onSubmit={onSubmit}>
         <FormGroup>
-          <Input onChange={onChange} type="text" name="jobtype" placeholder="Filter by title, companies, expertise..." />
+          <Input onChange={onChange} type="text" name="description" placeholder="Filter by title, companies, expertise..." />
         </FormGroup>
         <FormGroup>
           <Input onChange={onChange} type="text" name="location" placeholder="Filter by location..." />

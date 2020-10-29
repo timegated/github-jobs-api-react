@@ -1,9 +1,7 @@
 import React from 'react'
 import Header from './components/Header/Header';
-const { log } = console;
-const App = (props) => {
-  
-  log('Properties from store inside App.js: ', props);
+
+const App = () => {
   return (
     <>
     <Header />

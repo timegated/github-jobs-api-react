@@ -8,10 +8,6 @@ import './index.css';
 
 const store = createStore(reducer);
 
-const { log } = console;
-log('The state of the entire application: ', store.getState());
-
-
 ReactDOM.render(
   <Provider store={store}>
     <App />
