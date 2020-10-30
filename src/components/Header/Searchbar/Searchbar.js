@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import JobsContext from '../../../context/jobsContext';
 import styled from 'styled-components';
 
 const SearchForm = styled.form`
@@ -62,6 +63,16 @@ const SearchButton = styled.button`
 `;
 
 const Searchbar = (props) => {
+  
+  const jobsContext = useContext(JobsContext);
+
+  const { jobs, loadJobs } = jobsContext;
+
+  
+  useEffect(() => {
+    loadJobs();
+  }, [])
+  console.log(jobs);
 
   // Dispatch actions here 
   const onChange = (e) => {

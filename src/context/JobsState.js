@@ -12,11 +12,27 @@ const JobsState = props => {
   const initState = {
     jobs: []
   }
+
   const [state, dispatch] = useReducer(jobsReducer, initState);
 
 
+  const loadJobs = async () => {
+    try {
+      const res = await axios.get('https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=javascript&page=1');
+      dispatch({
+        type: SEARCH_ALL,
+        payload: res.data
+      })
+    } catch (error) {
+      console.log(error.message);      
+    }
+  };
+
   return (
-    <JobsContext.Provider value={{}}>
+    <JobsContext.Provider value={{
+      jobs: state.jobs,
+      loadJobs
+    }}>
       {props.children}
     </JobsContext.Provider>
   )
