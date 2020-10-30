@@ -73,7 +73,7 @@ const Searchbar = () => {
   const jobs = useSelector(state => state.jobs);
   const dispatch = useDispatch();
 
-  console.log(jobs);
+
 
   const combinedState = {
     description: inputValue.description.trim(),
@@ -88,15 +88,12 @@ const Searchbar = () => {
 
   const onSubmit = (e) => {
     // Request made to the API to return the jobs (array);
-    fetch(
-      `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${combinedState.description}&location=${combinedState.location}&full_time=${combinedState.fulltime}`
-    )
-      .then((res) => res.json())
-      .then((data) => dispatch({ type: 'SEARCH_ALL_PARAMS', payload: data }));
     
+    console.log(jobs);
     e.preventDefault();
   };
-
+  console.log(jobs);
+  console.debug(jobs);
   return (
     <>
       <SearchForm onSubmit={onSubmit}>
