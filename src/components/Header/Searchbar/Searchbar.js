@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 import styled from 'styled-components';
 
 const SearchForm = styled.form`
@@ -33,7 +32,7 @@ const FormGroup = styled.div`
   p {
     font-size: 14px;
     flex: 1 0 75%;
-  }
+  } 
 
   input[type=checkbox] {
     flex: 1 0 25%;
@@ -62,38 +61,19 @@ const SearchButton = styled.button`
   }
 `;
 
-const Searchbar = () => {
-  // Send the local state of this component to the reducer
-  const [inputValue, setInputValue] = useState({
-    description: '',
-    location: '',
-  });
+const Searchbar = (props) => {
 
-  const [checked, setChecked] = useState(false);
-  const jobs = useSelector(state => state.jobs);
-  const dispatch = useDispatch();
-
-
-
-  const combinedState = {
-    description: inputValue.description.trim(),
-    location: inputValue.location.trim(),
-    fulltime: checked.toString()
-  };
-  
+  // Dispatch actions here 
   const onChange = (e) => {
-    setInputValue({...inputValue, [e.target.name]: e.target.value});
-    setChecked(!checked);
+   
   };
 
   const onSubmit = (e) => {
     // Request made to the API to return the jobs (array);
-    
-    console.log(jobs);
+
     e.preventDefault();
   };
-  console.log(jobs);
-  console.debug(jobs);
+
   return (
     <>
       <SearchForm onSubmit={onSubmit}>
@@ -105,7 +85,7 @@ const Searchbar = () => {
         </FormGroup>
         <FormGroup>
           <div style={{display: 'flex', alignItems: 'center'}}>
-          <Input onChange={onChange} type="checkbox" value={checked ? true : false} />
+          {/* <Input onChange={onChange} type="checkbox" value={fulltime ? true : false} /> */}
           <p>Full Time Only</p>
           </div>
           <SearchButton>Search</SearchButton>

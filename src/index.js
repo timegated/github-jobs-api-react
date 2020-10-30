@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import JobsState from './context/JobsState';
 import App from './App';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer from './store/reducers/reducer';
 import './index.css';
 
-const store = createStore(reducer);
 
 ReactDOM.render(
-  <Provider store={store}>
+  <JobsState>
     <App />
-  </Provider>,
+  </JobsState>,
   document.getElementById('root'));
 
 module.hot.accept();
