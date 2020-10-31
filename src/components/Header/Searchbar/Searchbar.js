@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import JobsContext from '../../../context/jobsContext';
 import styled from 'styled-components';
 
@@ -63,20 +63,21 @@ const SearchButton = styled.button`
 `;
 
 const Searchbar = (props) => {
-  
+  const [formData, setFormData] = useState({
+    description: '',
+    location: '',
+    fulltime: false
+  });
+
   const jobsContext = useContext(JobsContext);
 
-  const { jobs, loadJobs } = jobsContext;
-
+  const { jobs, loadJobsInitial } = jobsContext;
   
-  useEffect(() => {
-    loadJobs();
-  }, [])
-  console.log(jobs);
+  console.log(jobsContext);
 
   // Dispatch actions here 
   const onChange = (e) => {
-   
+    
   };
 
   const onSubmit = (e) => {

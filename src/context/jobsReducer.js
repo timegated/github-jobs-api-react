@@ -1,7 +1,10 @@
 import {
   SEARCH_ALL,
   SEARCH_DESCRIPTION,
-  SEARCH_LOCATION
+  SEARCH_LOCATION,
+  UPDATE_DESC,
+  UPDATE_LOC,
+  UPDATE_FULLTIME
 } from './types';
 
 export default (state, action) => {
@@ -19,6 +22,11 @@ export default (state, action) => {
     case SEARCH_LOCATION:
       return {
         jobs: action.payload
+      }
+    case UDPATE_DESC:
+      return {
+        ...state,
+        form: payload
       }
     default: 
       return state

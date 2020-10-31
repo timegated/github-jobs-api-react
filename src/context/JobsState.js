@@ -5,18 +5,34 @@ import jobsReducer from './jobsReducer';
 import {
   SEARCH_ALL,
   SEARCH_DESCRIPTION,
-  SEARCH_LOCATION
+  SEARCH_LOCATION,
+  UPDATE_DESC,
+  UPDATE_LOC,
+  UPDATE_FULL_TIME
 } from './types';
 
 const JobsState = props => {
   const initState = {
-    jobs: []
-  }
+    jobs: [],
+    form: {
+      desc: '',
+      loc: '',
+      fulltime: false
+    }
+  };
 
   const [state, dispatch] = useReducer(jobsReducer, initState);
 
 
-  const loadJobs = async () => {
+  const updateDesc = (e) => {
+    dispatch({
+      type: UPDATE_DESC,
+      payload: state
+    })
+  };
+
+  // Async Logic
+  const loadJobsInitial = async () => {
     try {
       const res = await axios.get('https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=javascript&page=1');
       dispatch({
@@ -31,7 +47,8 @@ const JobsState = props => {
   return (
     <JobsContext.Provider value={{
       jobs: state.jobs,
-      loadJobs
+      form: state.form,
+      loadJobsInitial
     }}>
       {props.children}
     </JobsContext.Provider>
