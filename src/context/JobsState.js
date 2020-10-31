@@ -23,14 +23,6 @@ const JobsState = props => {
 
   const [state, dispatch] = useReducer(jobsReducer, initState);
 
-
-  const updateDesc = (e) => {
-    dispatch({
-      type: UPDATE_DESC,
-      payload: state
-    })
-  };
-
   // Async Logic
   const loadJobsInitial = async () => {
     try {
@@ -40,15 +32,53 @@ const JobsState = props => {
         payload: res.data
       })
     } catch (error) {
-      console.log(error.message);      
+      console.error(error.message);
     }
   };
 
+  const descriptionSearch = async (desc) => {
+    try {
+      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${desc}`);
+      dispatch({
+        type: SEARCH_DESCRIPTION,
+        payload: res.data
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const locationDescriptionSearch = async (desc, loc) => {
+    try {
+      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${desc}&location=${loc}`)
+      dispatch({
+        type: SEARCH_LOCATION,
+        payload: res.data
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const searchAllParams = async (desc, loc, fulltime) => {
+    try {
+      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${desc}&location=${loc}&full_time=${fulltime}`);
+      dispatch({
+        type: SEARCH_ALL,
+        payload: res.data
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
   return (
     <JobsContext.Provider value={{
       jobs: state.jobs,
       form: state.form,
-      loadJobsInitial
+      loadJobsInitial,
+      descriptionSearch,
+      locationDescriptionSearch,
+      searchAllParams
     }}>
       {props.children}
     </JobsContext.Provider>

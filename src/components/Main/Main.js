@@ -42,6 +42,10 @@ const JobCard = styled.div`
   @media (max-width: 320px) {
     width: 100%;
   }
+
+  @media (max-width: 767px) {
+    flex: 1 0 50%;
+  }
 `;
 
 const NoJobsHere = styled.h1`
@@ -54,10 +58,10 @@ const Main = () => {
   const jobsContext = useContext(JobsContext);
   const { jobs, loadJobsInitial } = jobsContext;
 
-  useEffect(() => {
-    loadJobsInitial();
-  }, []);
-
+  // useEffect(() => {
+  //   loadJobsInitial();
+  // }, []);
+  // Converting from UTC -> LocalTime 
   const convertDate = (date) => {
     const currentDate = Date.now();
     const jobDate = Date.parse(date);

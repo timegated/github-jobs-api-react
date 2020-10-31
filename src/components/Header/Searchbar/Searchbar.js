@@ -66,23 +66,30 @@ const Searchbar = (props) => {
   const [formData, setFormData] = useState({
     description: '',
     location: '',
-    fulltime: false
   });
+  const [fullTime, setFullTime] = useState(false);
+
+  const { description, location } = formData;
 
   const jobsContext = useContext(JobsContext);
+  const { descriptionSearch, locationDescriptionSearch, searchAllParams } = jobsContext;
 
-  const { jobs, loadJobsInitial } = jobsContext;
-  
-  console.log(jobsContext);
 
   // Dispatch actions here 
   const onChange = (e) => {
-    
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFullTime(true);
   };
 
   const onSubmit = (e) => {
-    // Request made to the API to return the jobs (array);
-
+    if (location === '') {
+      descriptionSearch(description);
+    } else if (location !== '' && description !=='' && !fullTime) {
+      // Some other function that searches for both params
+      locationDescriptionSearch(description, location);
+    } else {
+      searchAllParams(description, location, fullTime);
+    }
     e.preventDefault();
   };
 
@@ -97,7 +104,7 @@ const Searchbar = (props) => {
         </FormGroup>
         <FormGroup>
           <div style={{display: 'flex', alignItems: 'center'}}>
-          {/* <Input onChange={onChange} type="checkbox" value={fulltime ? true : false} /> */}
+          <Input onChange={onChange} type="checkbox" value={fullTime ? true : false} />
           <p>Full Time Only</p>
           </div>
           <SearchButton>Search</SearchButton>
