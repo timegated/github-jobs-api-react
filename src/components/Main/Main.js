@@ -17,9 +17,8 @@ const JobCardContainer = styled.div`
 const JobCard = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
+  justify-content: start;
+  text-align: left;
   margin: 1.25rem;
   padding: 0.75rem;
   flex: 1 0 25%;
@@ -34,7 +33,7 @@ const JobCard = styled.div`
   }
   .job-time-type {
     display: inline-flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
   @media (min-width: 768px) {
     flex: 1 0 50%;
@@ -62,7 +61,6 @@ const Main = () => {
   const convertDate = (date) => {
     const currentDate = Date.now();
     const jobDate = Date.parse(date);
-    console.log(jobDate);
     const convertedDate = currentDate - jobDate;
     const dateInstance = new Date(convertedDate);
     return dateInstance.getHours()
@@ -73,13 +71,11 @@ const Main = () => {
       {jobs.length === 0 ? <NoJobsHere>No Jobs Here Yet</NoJobsHere>
         : <JobCardContainer>
           {jobs.map(job => {
-            console.log(Date.parse(job.created_at) - Date.now());
             return (
               <JobCard key={job.id}>
                 <img className="job-company-logo" src={job.company_logo} alt="The companies logo" width={50} height={50} />
                 <div className="job-time-type">
                   <p>{convertDate(job.created_at)}h ago</p> <span> - </span> <p>{job.type}</p>
-
                 </div>
                 <h2>{job.title}</h2>
                 <p>{job.company}</p>
