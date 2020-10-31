@@ -62,7 +62,7 @@ const SearchButton = styled.button`
   }
 `;
 
-const Searchbar = (props) => {
+const Searchbar = () => {
   const [formData, setFormData] = useState({
     description: '',
     location: '',
@@ -77,16 +77,15 @@ const Searchbar = (props) => {
 
   // Dispatch actions here 
   const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setFullTime(true);
+    setFormData({ ...formData, [e.target.name]: e.target.value.trim() });
+    setFullTime(!fullTime);
   };
-
+ 
   const onSubmit = (e) => {
     if (location === '') {
-      descriptionSearch(description);
-    } else if (location !== '' && description !=='' && !fullTime) {
-      // Some other function that searches for both params
-      locationDescriptionSearch(description, location);
+      descriptionSearch(description, fullTime);
+    } else if (description === '') {
+      locationDescriptionSearch( location, fulltime);
     } else {
       searchAllParams(description, location, fullTime);
     }

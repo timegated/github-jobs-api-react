@@ -36,9 +36,9 @@ const JobsState = props => {
     }
   };
 
-  const descriptionSearch = async (desc) => {
+  const descriptionSearch = async (desc, fulltime) => {
     try {
-      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${desc}`);
+      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${desc}&full_time=${fulltime}`);
       dispatch({
         type: SEARCH_DESCRIPTION,
         payload: res.data
@@ -48,9 +48,9 @@ const JobsState = props => {
     }
   };
 
-  const locationDescriptionSearch = async (desc, loc) => {
+  const locationDescriptionSearch = async (desc, loc, fulltime) => {
     try {
-      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${desc}&location=${loc}`)
+      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${desc}&location=${loc}&full_time=${fulltime}`)
       dispatch({
         type: SEARCH_LOCATION,
         payload: res.data
