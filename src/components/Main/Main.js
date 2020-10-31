@@ -7,6 +7,11 @@ const JobCardContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   margin: 10rem;
+  justify-content: center;
+
+  @media (max-width: 320px) {
+    margin: 0 auto;
+  }
 `;
 
 const JobCard = styled.div`
@@ -15,19 +20,28 @@ const JobCard = styled.div`
   justify-content: center;
   align-content: center;
   text-align: center;
-  margin: .75rem;
+  margin: 1.25rem;
+  padding: 0.75rem;
   flex: 1 0 25%;
   background: var(--secondary-white);
   border-radius: 15px;
+  max-width: 450px;
 
   .job-company-logo {
     position: relative;
-    top: -15px;
+    top: -15%;
     left: 10%;
   }
   .job-time-type {
     display: flex;
     justify-content: center;
+  }
+  @media (min-width: 768px) {
+    flex: 1 0 50%;
+  }
+
+  @media (max-width: 320px) {
+    width: 100%;
   }
 `;
 
