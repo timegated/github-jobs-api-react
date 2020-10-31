@@ -72,7 +72,7 @@ const Searchbar = () => {
   const { description, location } = formData;
 
   const jobsContext = useContext(JobsContext);
-  const { descriptionSearch, locationDescriptionSearch, searchAllParams } = jobsContext;
+  const { descriptionSearch, locationSearch, searchAllParams } = jobsContext;
 
 
   // Dispatch actions here 
@@ -85,7 +85,7 @@ const Searchbar = () => {
     if (location === '') {
       descriptionSearch(description, fullTime);
     } else if (description === '') {
-      locationDescriptionSearch( location, fulltime);
+      locationSearch(location, fullTime);
     } else {
       searchAllParams(description, location, fullTime);
     }

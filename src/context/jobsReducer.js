@@ -2,6 +2,7 @@ import {
   SEARCH_ALL,
   SEARCH_DESCRIPTION,
   SEARCH_LOCATION,
+  SINGLE_JOB_POST,
   UPDATE_DESC,
   UPDATE_LOC,
   UPDATE_FULLTIME
@@ -21,7 +22,13 @@ export default (state, action) => {
       }
     case SEARCH_LOCATION:
       return {
+        ...state,
         jobs: action.payload
+      }
+    case SINGLE_JOB_POST:
+      return {
+        ...state,
+       singleJob: action.payload
       }
     case UDPATE_DESC:
       return {

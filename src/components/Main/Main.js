@@ -1,4 +1,6 @@
 import React, { useContext, useEffect } from 'react';
+import Header from '../Header/Header';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import JobsContext from '../../context/jobsContext';
 import styled from 'styled-components';
 
@@ -34,6 +36,21 @@ const JobCard = styled.div`
   .job-time-type {
     display: inline-flex;
     justify-content: flex-start;
+
+    p {
+      margin: 0.25em;
+    }
+  }
+
+  .job-link {
+    text-decoration: none;
+    color: var(--primary-dark-midnight);
+    margin: 1.5rem 0;
+
+    &:hover {
+      color: var(--secondary-dark-gray);
+      transition: all 0.2s ease-in;
+    }
   }
   @media (min-width: 768px) {
     flex: 1 0 50%;
@@ -56,12 +73,12 @@ const NoJobsHere = styled.h1`
 const Main = () => {
 
   const jobsContext = useContext(JobsContext);
-  const { jobs, loadJobsInitial } = jobsContext;
+  const { jobs, loadJobsInitial, singleJobPost } = jobsContext;
 
   // useEffect(() => {
   //   loadJobsInitial();
-  // }, []);
-  // Converting from UTC -> LocalTime 
+  // }, [jobs]);
+
   const convertDate = (date) => {
     const currentDate = Date.now();
     const jobDate = Date.parse(date);
@@ -72,16 +89,17 @@ const Main = () => {
 
   return (
     <>
-      {jobs.length === 0 ? <NoJobsHere>No Jobs Here Yet</NoJobsHere>
+      <Header />
+      {jobs === null ? <NoJobsHere>No Jobs Here Yet</NoJobsHere>
         : <JobCardContainer>
           {jobs.map(job => {
             return (
               <JobCard key={job.id}>
                 <img className="job-company-logo" src={job.company_logo} alt="The companies logo" width={50} height={50} />
                 <div className="job-time-type">
-                  <p>{convertDate(job.created_at)}h ago</p> <span> - </span> <p>{job.type}</p>
+                  <p>{convertDate(job.created_at)}h ago</p> {" "} <p>{job.type}</p>
                 </div>
-                <h2>{job.title}</h2>
+                  <Link className="job-link" to='/job' onClick={() => singleJobPost(job.id)}>{job.title}</Link>
                 <p>{job.company}</p>
                 <p>{job.location}</p>
               </JobCard>

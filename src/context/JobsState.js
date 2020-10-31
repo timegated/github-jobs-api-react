@@ -6,6 +6,7 @@ import {
   SEARCH_ALL,
   SEARCH_DESCRIPTION,
   SEARCH_LOCATION,
+  SINGLE_JOB_POST,
   UPDATE_DESC,
   UPDATE_LOC,
   UPDATE_FULL_TIME
@@ -13,7 +14,8 @@ import {
 
 const JobsState = props => {
   const initState = {
-    jobs: [],
+    jobs: null,
+    singleJob: null,
     form: {
       desc: '',
       loc: '',
@@ -36,6 +38,8 @@ const JobsState = props => {
     }
   };
 
+  // Find Multiple Jobs
+
   const descriptionSearch = async (desc, fulltime) => {
     try {
       const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${desc}&full_time=${fulltime}`);
@@ -48,9 +52,9 @@ const JobsState = props => {
     }
   };
 
-  const locationDescriptionSearch = async (desc, loc, fulltime) => {
+  const locationSearch = async (loc, fulltime) => {
     try {
-      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${desc}&location=${loc}&full_time=${fulltime}`)
+      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?&location=${loc}&full_time=${fulltime}`)
       dispatch({
         type: SEARCH_LOCATION,
         payload: res.data
@@ -70,15 +74,30 @@ const JobsState = props => {
     } catch (error) {
       console.error(error.message);
     }
-  }
+  };
+
+  // Find Single Job Posting
+  const singleJobPost = async (id) => {
+    try {
+      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${id}.json`)
+      dispatch({
+        type: SINGLE_JOB_POST,
+        payload: res.data
+      })
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <JobsContext.Provider value={{
       jobs: state.jobs,
       form: state.form,
       loadJobsInitial,
       descriptionSearch,
-      locationDescriptionSearch,
-      searchAllParams
+      locationSearch,
+      searchAllParams,
+      singleJobPost
     }}>
       {props.children}
     </JobsContext.Provider>
