@@ -3,9 +3,6 @@ import {
   SEARCH_DESCRIPTION,
   SEARCH_LOCATION,
   SINGLE_JOB_POST,
-  UPDATE_DESC,
-  UPDATE_LOC,
-  UPDATE_FULLTIME
 } from './types';
 
 export default (state, action) => {

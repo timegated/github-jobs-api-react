@@ -5,9 +5,11 @@ import styled from 'styled-components';
 const JobPost = () => {
   const jobsContext = useContext(JobsContext);
 
-  const { singleJob } = jobsContext;
+  const { singleJob, singleJobPost } = jobsContext;
 
-  console.log(singleJob);
+  useEffect(() => {
+    singleJobPost('8dec62ca-a394-493a-9c18-0f1a186a3f86');
+  },[]);
   return (
     <div>
       <h1>Single Job Post page</h1>

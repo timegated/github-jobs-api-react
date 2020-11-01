@@ -7,9 +7,6 @@ import {
   SEARCH_DESCRIPTION,
   SEARCH_LOCATION,
   SINGLE_JOB_POST,
-  UPDATE_DESC,
-  UPDATE_LOC,
-  UPDATE_FULL_TIME
 } from './types';
 
 const JobsState = props => {
@@ -78,6 +75,7 @@ const JobsState = props => {
 
   // Find Single Job Posting
   const singleJobPost = async (id) => {
+    console.log('The id of the job single job post: ', id);
     try {
       const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${id}.json`)
       dispatch({

@@ -14,7 +14,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path='/' component={Main} />
-          <Route exact path='/job' component={JobPost} />
+          <Route exact path='/job/:id' component={JobPost} />
         </Switch>
       </Router>
     </JobState>

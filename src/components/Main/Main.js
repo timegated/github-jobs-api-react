@@ -73,11 +73,7 @@ const NoJobsHere = styled.h1`
 const Main = () => {
 
   const jobsContext = useContext(JobsContext);
-  const { jobs, loadJobsInitial, singleJobPost } = jobsContext;
-
-  // useEffect(() => {
-  //   loadJobsInitial();
-  // }, [jobs]);
+  const { jobs, singleJobPost } = jobsContext;
 
   const convertDate = (date) => {
     const currentDate = Date.now();
@@ -99,7 +95,7 @@ const Main = () => {
                 <div className="job-time-type">
                   <p>{convertDate(job.created_at)}h ago</p> {" "} <p>{job.type}</p>
                 </div>
-                  <Link className="job-link" to='/job' onClick={() => singleJobPost(job.id)}>{job.title}</Link>
+                  <Link className="job-link" to={`/job/${job.id}`} onClick={() => singleJobPost(job.id)}>{job.title}</Link>
                 <p>{job.company}</p>
                 <p>{job.location}</p>
               </JobCard>
