@@ -75,7 +75,6 @@ const JobsState = props => {
 
   // Find Single Job Posting
   const singleJobPost = async (id) => {
-    console.log('The id of the job single job post: ', id);
     try {
       const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${id}.json`)
       dispatch({
@@ -90,6 +89,7 @@ const JobsState = props => {
   return (
     <JobsContext.Provider value={{
       jobs: state.jobs,
+      singleJob: state.singleJob,
       form: state.form,
       loadJobsInitial,
       descriptionSearch,

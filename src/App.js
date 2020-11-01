@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import Header from './components/Header/Header';
+import Searchbar from './components/Header/Searchbar/Searchbar';
 import Main from './components/Main/Main';
 import JobPost from './components/JobPost/JobPost';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -12,6 +12,7 @@ const App = () => {
   return (
     <JobState>
       <Router>
+        <Searchbar />
         <Switch>
           <Route exact path='/' component={Main} />
           <Route exact path='/job/:id' component={JobPost} />

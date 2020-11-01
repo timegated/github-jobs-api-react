@@ -80,9 +80,9 @@ const Main = () => {
     const jobDate = Date.parse(date);
     const convertedDate = currentDate - jobDate;
     const dateInstance = new Date(convertedDate);
-    return dateInstance.getHours()
+    return dateInstance.getHours();
   };
-
+  console.log(jobs);
   return (
     <>
       <Header />

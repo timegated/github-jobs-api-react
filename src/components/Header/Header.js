@@ -15,6 +15,7 @@ const HeaderContainer = styled.header`
   flex-direction: column;
   padding: 2.5rem;
   width: 100%;
+  height: 20vh;
 `;
 
 const Logo = styled.img`
@@ -24,13 +25,7 @@ const Logo = styled.img`
 const ToggleContainer = styled.div`
   display: flex;
   justify-content: space-around;
-`
-
-// Component Structure
-// Container
-// Flex-Parent ->
-// Logo + ToggleButton: Justify: Space-between/around : Flex-direction: row;
-// Searchbar: Fixed Position: Centered: 3 subsections
+`;
 
 const Header = () => {
   return (
@@ -38,8 +33,7 @@ const Header = () => {
         <ToggleContainer>
           <Logo src={logo} alt="Devjobs logo" />
           <Toggle />
-        </ToggleContainer>
-          <Searchbar />
+        </ToggleContainer>     
     </HeaderContainer>
   );
 };

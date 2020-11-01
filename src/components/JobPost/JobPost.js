@@ -1,19 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react';
 import JobsContext from '../../context/jobsContext';
+import Header from '../Header/Header';
 import styled from 'styled-components';
 
-const JobPost = () => {
+const JobPost = (props) => {
   const jobsContext = useContext(JobsContext);
 
-  const { singleJob, singleJobPost } = jobsContext;
+  const { jobs, singleJob, singleJobPost } = jobsContext;
 
-  useEffect(() => {
-    singleJobPost('8dec62ca-a394-493a-9c18-0f1a186a3f86');
-  },[]);
+  console.log('Properties of JobPost', props);
+  console.log(jobs);
+
+  // useEffect(() => {
+  //   singleJobPost(jobs.id);
+  // }, []);
+  
   return (
-    <div>
-      <h1>Single Job Post page</h1>
-    </div>
+    <>
+      <Header />
+        {jobs.id}
+      
+    </>
   );
 };
 

@@ -3,10 +3,11 @@ import JobsContext from '../../../context/jobsContext';
 import styled from 'styled-components';
 
 const SearchForm = styled.form`
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: row;
-  top: 75px;
+  top: 15%;
+  left: 20%;
   margin: auto;
   width: 75vw;
   max-width: 1200px;
