@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import JobsContext from '../../../context/jobsContext';
+import JobsContext from '../../../context/jobsContext/jobsContext';
 import styled from 'styled-components';
 
 const SearchForm = styled.form`

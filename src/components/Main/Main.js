@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import Header from '../Header/Header';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
-import JobsContext from '../../context/jobsContext';
+import JobsContext from '../../context/jobsContext/jobsContext';
 import styled from 'styled-components';
 
 const JobCardContainer = styled.div`

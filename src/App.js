@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import Main from './components/Main/Main';
 import JobPost from './components/JobPost/JobPost';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import JobsContext from './context/jobsContext';
-import JobState from './context/JobsState';
+import JobsContext from './context/jobsContext/jobsContext';
+import JobState from './context/jobsContext/JobsState';
 
 const App = () => {
   const jobsContext = useContext(JobsContext);

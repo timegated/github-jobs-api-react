@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import desktopHeaderBg from '../../assets/desktop/bg-pattern-header.svg';
 import logo from '../../assets/desktop/logo.svg';
 
-import JobsContext from '../../context/jobsContext';
+import JobsContext from '../../context/jobsContext/jobsContext';
 
 const HeaderContainer = styled.header`
   background: url(${desktopHeaderBg});
@@ -33,6 +33,7 @@ const Header = () => {
   const jobsContext = useContext(JobsContext);
 
   const { jobs } = jobsContext;
+
   const renderSearchbar = () => {
     if (jobs === null) {
       return (<Searchbar />);
@@ -40,6 +41,7 @@ const Header = () => {
       return (<Searchbar />);
     };
   };
+  
   return (
     <HeaderContainer>
         <ToggleContainer>

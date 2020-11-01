@@ -1,0 +1,40 @@
+import React, { useReducer } from 'react';
+import axios from 'axios';
+import SingleJobContext from './singleJobContext';
+import singleJobReducer from './singleJobReducer';
+import {
+  SINGLE_JOB_POST,
+} from '../types';
+
+const SingleJobsState = props => {
+  const initState = {
+    singleJob: null,
+  };
+
+  const [state, dispatch] = useReducer(singleJobReducer, initState);
+
+
+  // Find Single Job Posting
+  const singleJobPost = async (id) => {
+    try {
+      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${id}.json`)
+      dispatch({
+        type: SINGLE_JOB_POST,
+        payload: res.data
+      })
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  return (
+    <SingleJobContext.Provider value={{
+      singleJob: state.singleJob,
+      singleJobPost
+    }}>
+      {props.children}
+    </SingleJobContext.Provider>
+  )
+};
+
+export default SingleJobState;

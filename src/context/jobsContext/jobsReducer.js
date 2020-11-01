@@ -3,7 +3,7 @@ import {
   SEARCH_DESCRIPTION,
   SEARCH_LOCATION,
   SINGLE_JOB_POST,
-} from './types';
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {

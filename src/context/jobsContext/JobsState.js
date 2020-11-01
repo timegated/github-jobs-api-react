@@ -7,7 +7,7 @@ import {
   SEARCH_DESCRIPTION,
   SEARCH_LOCATION,
   SINGLE_JOB_POST,
-} from './types';
+} from '../types';
 
 const JobsState = props => {
   const initState = {
