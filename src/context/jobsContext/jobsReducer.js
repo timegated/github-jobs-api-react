@@ -22,16 +22,6 @@ export default (state, action) => {
         ...state,
         jobs: action.payload
       }
-    case SINGLE_JOB_POST:
-      return {
-        ...state,
-       singleJob: action.payload
-      }
-    case UDPATE_DESC:
-      return {
-        ...state,
-        form: payload
-      }
     default: 
       return state
   }

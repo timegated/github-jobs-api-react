@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import JobsContext from '../../context/jobsContext/jobsContext';
+import SingleJobContext from '../../context/singleJobContext/singleJobContext';
 import Header from '../Header/Header';
 import styled from 'styled-components';
 
@@ -15,27 +15,36 @@ const JobPostBody = styled.section``;
 
 
 
-const JobPost = (props) => {
-  const jobsContext = useContext(JobsContext);
+const JobPost = () => {
+  const singleJobContext = useContext(SingleJobContext);
 
-  const { jobs, singleJob } = jobsContext;
-  console.log(singleJob);
+  const { singleJob } = singleJobContext;
+
+  const renderSingleJobPost = (obj) => {
+    if (obj !== null) {
+      const { company_logo, company, company_url } = singleJob;
+      return (<>
+        <div className="img-container">
+        <img src={company_logo} alt="company logo" srcset=""/>
+      </div>
+      <div className="company-name">
+        <h1>{company}</h1>
+        <p>{company_url}</p>
+      </div>
+      <div className="button-container">
+        <button>
+          <a href={company.url}>Company Site</a>
+        </button>
+          </div>
+        </>)
+    }
+    return 'Haha, no jobs here'
+  }
   return (
     <>
       <Header />
       <JobPostHeading>
-        <div className="img-container">
-          <img src={jobs.company_logo} alt="company logo" srcset=""/>
-        </div>
-        <div className="company-name">
-          <h1>{jobs.company}</h1>
-          <p>{jobs.company_url}</p>
-        </div>
-        <div className="button-container">
-          <button>
-            <a href={jobs.company.url}>Company Site</a>
-          </button>
-        </div>
+        {renderSingleJobPost(singleJob)}
       </JobPostHeading>        
       
     </>

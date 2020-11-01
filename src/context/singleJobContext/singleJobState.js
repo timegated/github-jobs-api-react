@@ -6,7 +6,7 @@ import {
   SINGLE_JOB_POST,
 } from '../types';
 
-const SingleJobsState = props => {
+const SingleJobState = props => {
   const initState = {
     singleJob: null,
   };

@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import Header from '../Header/Header';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import JobsContext from '../../context/jobsContext/jobsContext';
+import SingleJobContext from '../../context/singleJobContext/singleJobContext';
 import styled from 'styled-components';
 
 const JobCardContainer = styled.div`
@@ -73,7 +74,10 @@ const NoJobsHere = styled.h1`
 const Main = () => {
 
   const jobsContext = useContext(JobsContext);
-  const { jobs, singleJobPost } = jobsContext;
+  const singleJobContext = useContext(SingleJobContext);
+
+  const { jobs } = jobsContext;
+  const { singleJobPost } = singleJobContext;
 
   const convertDate = (date) => {
     const currentDate = Date.now();
@@ -82,14 +86,13 @@ const Main = () => {
     const dateInstance = new Date(convertedDate);
     return dateInstance.getHours();
   };
-  console.log(jobs);
+  
   return (
     <>
       <Header />
       {jobs === null ? <NoJobsHere>No Jobs Here Yet</NoJobsHere>
         : <JobCardContainer>
           {jobs.map(job => {
-            console.log(job);
             return (
               <JobCard key={job.id}>
                 <img className="job-company-logo" src={job.company_logo} alt="The companies logo" width={50} height={50} />
