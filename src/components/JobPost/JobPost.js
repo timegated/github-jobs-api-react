@@ -7,14 +7,7 @@ const JobPost = (props) => {
   const jobsContext = useContext(JobsContext);
 
   const { jobs, singleJob, singleJobPost } = jobsContext;
-
-  console.log('Properties of JobPost', props);
   console.log(jobs);
-
-  // useEffect(() => {
-  //   singleJobPost(jobs.id);
-  // }, []);
-  
   return (
     <>
       <Header />

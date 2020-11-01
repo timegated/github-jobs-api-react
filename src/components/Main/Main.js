@@ -89,6 +89,7 @@ const Main = () => {
       {jobs === null ? <NoJobsHere>No Jobs Here Yet</NoJobsHere>
         : <JobCardContainer>
           {jobs.map(job => {
+            console.log(job);
             return (
               <JobCard key={job.id}>
                 <img className="job-company-logo" src={job.company_logo} alt="The companies logo" width={50} height={50} />

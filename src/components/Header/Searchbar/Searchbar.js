@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import JobsContext from '../../../context/jobsContext';
 import styled from 'styled-components';
 
 const SearchForm = styled.form`
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: row;
-  top: 15%;
-  left: 20%;
+  top: 75px;
   margin: auto;
   width: 75vw;
   max-width: 1200px;
