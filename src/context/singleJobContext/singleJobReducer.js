@@ -5,7 +5,7 @@ import {
 export default (state, action) => {
   switch (action.type) {
     case SINGLE_JOB_POST:
-      localStorage.setItem('singleJob', action.payload.id);
+      // localStorage.setItem('singleJob', action.payload.id);
       return {
         ...state,
        singleJob: action.payload

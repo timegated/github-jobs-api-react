@@ -3,6 +3,8 @@ import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
 import JobsContext from '../../context/jobsContext/jobsContext';
 import SingleJobContext from '../../context/singleJobContext/singleJobContext';
+import { convertDate } from '../../utils/convertDates';
+import { sortJobs } from '../../utils/sortJobs';
 import styled from 'styled-components';
 
 const JobCardContainer = styled.div`
@@ -79,24 +81,16 @@ const Main = () => {
   const { jobs, loadJobsInitial } = jobsContext;
   const { singleJobPost } = singleJobContext;
 
-  // useEffect(() => {
-  //   loadJobsInitial();
-  // },[]);
+  useEffect(() => {
+    loadJobsInitial();
+  },[]);
 
-  const convertDate = (date) => {
-    const currentDate = Date.now();
-    const jobDate = Date.parse(date);
-    const convertedDate = currentDate - jobDate;
-    const dateInstance = new Date(convertedDate);
-    return dateInstance.getHours();
-  };
-  
   return (
     <>
       <Header />
       {jobs === null ? <NoJobsHere>No Jobs Here Yet</NoJobsHere>
         : <JobCardContainer>
-          {jobs.map(job => {
+          {sortJobs(jobs, convertDate).map(job => {
             return (
               <JobCard key={job.id}>
                 <img className="job-company-logo" src={job.company_logo} alt="The companies logo" width={50} height={50} />

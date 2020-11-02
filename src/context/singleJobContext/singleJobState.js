@@ -19,9 +19,7 @@ const SingleJobState = props => {
     // localStorage.removeItem('singleJob');
 
     try {
-      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${id}.json`, {
-        headers: {"Access-Control-Allow-Origin": "*"}
-      })
+      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${id}.json`)
       dispatch({
         type: SINGLE_JOB_POST,
         payload: res.data
