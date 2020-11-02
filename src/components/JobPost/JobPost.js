@@ -5,8 +5,18 @@ import styled from 'styled-components';
 
 const JobPostHeading = styled.section`
   display: flex;
+  width: 750px;
+  margin: auto;
 
   .img-container {
+    flex: 1 0 20%;
+  }
+  .company-name {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 60%;
+  }
+  .button-container {
     flex: 1 0 20%;
   }
 `;
@@ -18,14 +28,14 @@ const JobPostBody = styled.section``;
 const JobPost = () => {
   const singleJobContext = useContext(SingleJobContext);
 
-  const { singleJob } = singleJobContext;
+  const { singleJob, singleJobPost } = singleJobContext;
 
   const renderSingleJobPost = (obj) => {
     if (obj !== null) {
       const { company_logo, company, company_url } = singleJob;
       return (<>
         <div className="img-container">
-        <img src={company_logo} alt="company logo" srcset=""/>
+          <img src={company_logo} alt="company logo" srcSet="" width={150} height={150}/>
       </div>
       <div className="company-name">
         <h1>{company}</h1>
@@ -38,14 +48,14 @@ const JobPost = () => {
           </div>
         </>)
     }
-    return 'Haha, no jobs here'
+    return 'Haha, no jobs here';
   }
   return (
     <>
       <Header />
       <JobPostHeading>
         {renderSingleJobPost(singleJob)}
-      </JobPostHeading>        
+      </JobPostHeading>
       
     </>
   );

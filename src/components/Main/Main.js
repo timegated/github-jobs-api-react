@@ -76,8 +76,12 @@ const Main = () => {
   const jobsContext = useContext(JobsContext);
   const singleJobContext = useContext(SingleJobContext);
 
-  const { jobs } = jobsContext;
+  const { jobs, loadJobsInitial } = jobsContext;
   const { singleJobPost } = singleJobContext;
+
+  useEffect(() => {
+    loadJobsInitial();
+  });
 
   const convertDate = (date) => {
     const currentDate = Date.now();
