@@ -6,20 +6,21 @@ import {
   SEARCH_ALL,
   SEARCH_DESCRIPTION,
   SEARCH_LOCATION,
-  SINGLE_JOB_POST,
 } from '../types';
 
 const JobsState = props => {
   const initState = {
     jobs: null,
   };
-
+  const baseURL = 'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?'
   const [state, dispatch] = useReducer(jobsReducer, initState);
 
   // Async Logic
   const loadJobsInitial = async () => {
     try {
-      const res = await axios.get('https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=javascript&page=1');
+      const res = await axios.get(baseURL + 'description=javascript', {
+        headers: {"Access-Control-Allow-Origin": "*"}
+      });
       dispatch({
         type: SEARCH_ALL,
         payload: res.data
@@ -33,7 +34,9 @@ const JobsState = props => {
 
   const descriptionSearch = async (desc, fulltime) => {
     try {
-      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${desc}&full_time=${fulltime}`);
+      const res = await axios.get(baseURL + `description=${desc}&full_time=${fulltime}`,{
+        headers: {"Access-Control-Allow-Origin": "*"}
+      });
       dispatch({
         type: SEARCH_DESCRIPTION,
         payload: res.data
@@ -45,7 +48,9 @@ const JobsState = props => {
 
   const locationSearch = async (loc, fulltime) => {
     try {
-      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?&location=${loc}&full_time=${fulltime}`)
+      const res = await axios.get(baseURL + `location=${loc}&full_time=${fulltime}`,{
+        headers: {"Access-Control-Allow-Origin": "*"}
+      })
       dispatch({
         type: SEARCH_LOCATION,
         payload: res.data
@@ -57,7 +62,9 @@ const JobsState = props => {
 
   const searchAllParams = async (desc, loc, fulltime) => {
     try {
-      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${desc}&location=${loc}&full_time=${fulltime}`);
+      const res = await axios.get(baseURL + `description=${desc}&location=${loc}&full_time=${fulltime}`,{
+        headers: {"Access-Control-Allow-Origin": "*"}
+      });
       dispatch({
         type: SEARCH_ALL,
         payload: res.data

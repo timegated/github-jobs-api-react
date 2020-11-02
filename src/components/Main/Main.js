@@ -79,9 +79,9 @@ const Main = () => {
   const { jobs, loadJobsInitial } = jobsContext;
   const { singleJobPost } = singleJobContext;
 
-  useEffect(() => {
-    loadJobsInitial();
-  },[]);
+  // useEffect(() => {
+  //   loadJobsInitial();
+  // },[]);
 
   const convertDate = (date) => {
     const currentDate = Date.now();

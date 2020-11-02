@@ -7,6 +7,10 @@ const JobPostHeading = styled.section`
   display: flex;
   width: 750px;
   margin: auto;
+  align-items: center;
+  background: var(--secondary-white);
+  padding: 1.5rem;
+  border-radius: 10px;
 
   .img-container {
     flex: 1 0 20%;
@@ -15,6 +19,7 @@ const JobPostHeading = styled.section`
     display: flex;
     flex-direction: column;
     flex: 1 0 60%;
+    margin-left: 1.5rem;
   }
   .button-container {
     flex: 1 0 20%;
@@ -29,10 +34,12 @@ const JobPost = () => {
   const singleJobContext = useContext(SingleJobContext);
 
   const { singleJob, singleJobPost } = singleJobContext;
-  const id = localStorage.getItem('singleJob');
-  useEffect(() => {
-    singleJobPost(id)
-  }, [])
+
+  // const id = localStorage.getItem('singleJob');
+
+  // useEffect(() => {
+  //   singleJobPost(id)
+  // }, [])
 
   const renderSingleJobPost = (obj) => {
     if (obj !== null) {
