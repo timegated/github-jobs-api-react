@@ -39,9 +39,9 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
   },
   output: {
-    path: __dirname + '/dist',
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'bundle.js',
+    filename: './bundle.js',
   },
   devServer: {
     contentBase: './dist',

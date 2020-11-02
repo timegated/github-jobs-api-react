@@ -29,6 +29,10 @@ const JobPost = () => {
   const singleJobContext = useContext(SingleJobContext);
 
   const { singleJob, singleJobPost } = singleJobContext;
+  const id = localStorage.getItem('singleJob');
+  useEffect(() => {
+    singleJobPost(id)
+  }, [])
 
   const renderSingleJobPost = (obj) => {
     if (obj !== null) {
@@ -39,12 +43,10 @@ const JobPost = () => {
       </div>
       <div className="company-name">
         <h1>{company}</h1>
-        <p>{company_url}</p>
+          <a href={company_url} target="_blank">{company_url}</a>
       </div>
       <div className="button-container">
-        <button>
-          <a href={company.url}>Company Site</a>
-        </button>
+          <a href={company_url} target="_blank">Company Site</a>
           </div>
         </>)
     }

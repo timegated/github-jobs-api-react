@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import desktopHeaderBg from '../../assets/desktop/bg-pattern-header.svg';
 import logo from '../../assets/desktop/logo.svg';
 
-import JobsContext from '../../context/jobsContext/jobsContext';
+import SingleJobContext from '../../context/singleJobContext/singleJobContext';
 
 const HeaderContainer = styled.header`
   background: url(${desktopHeaderBg});
@@ -30,25 +30,18 @@ const ToggleContainer = styled.div`
 `;
 
 const Header = () => {
-  const jobsContext = useContext(JobsContext);
+  const singleJobContext = useContext(SingleJobContext);
 
-  const { jobs } = jobsContext;
+  const { singleJob } = singleJobContext;
 
-  const renderSearchbar = () => {
-    if (jobs === null) {
-      return (<Searchbar />);
-    } else if (Array.isArray(jobs)) {
-      return (<Searchbar />);
-    };
-  };
-  
+  console.log('SingleJobContext in Header component: ' , singleJob);
   return (
     <HeaderContainer>
         <ToggleContainer>
           <Logo src={logo} alt="Devjobs logo" />
         <Toggle />
       </ToggleContainer>
-      {renderSearchbar()}
+      {singleJob === null ? <Searchbar /> : " "}
     </HeaderContainer>
   );
 };

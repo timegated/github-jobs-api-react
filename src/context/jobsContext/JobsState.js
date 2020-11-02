@@ -12,12 +12,6 @@ import {
 const JobsState = props => {
   const initState = {
     jobs: null,
-    singleJob: null,
-    form: {
-      desc: '',
-      loc: '',
-      fulltime: false
-    }
   };
 
   const [state, dispatch] = useReducer(jobsReducer, initState);
@@ -73,29 +67,13 @@ const JobsState = props => {
     }
   };
 
-  // Find Single Job Posting
-  const singleJobPost = async (id) => {
-    try {
-      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${id}.json`)
-      dispatch({
-        type: SINGLE_JOB_POST,
-        payload: res.data
-      })
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
-
   return (
     <JobsContext.Provider value={{
       jobs: state.jobs,
-      singleJob: state.singleJob,
-      form: state.form,
       loadJobsInitial,
       descriptionSearch,
       locationSearch,
       searchAllParams,
-      singleJobPost
     }}>
       {props.children}
     </JobsContext.Provider>

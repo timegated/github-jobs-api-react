@@ -81,7 +81,7 @@ const Main = () => {
 
   useEffect(() => {
     loadJobsInitial();
-  });
+  },[]);
 
   const convertDate = (date) => {
     const currentDate = Date.now();
