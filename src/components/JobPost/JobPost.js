@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import SingleJobContext from '../../context/singleJobContext/singleJobContext';
 import Header from '../Header/Header';
+import ReactHtmlParser from 'react-html-parser';
 import styled from 'styled-components';
 
 const JobPostHeading = styled.section`
+  position: relative;
+  top: -50px;
   display: flex;
   width: 750px;
   margin: auto;
@@ -26,11 +29,25 @@ const JobPostHeading = styled.section`
   }
 `;
 
-const JobPostBody = styled.section``;
+const JobPostBody = styled.section`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  max-width: 768px;
+  margin: auto;
+  background-color: var(--secondary-white);
+  padding: 1.5rem;
+  border-radius: 15px;
+
+  .job-body-post {
+    display: flex;
+    flex-direction: column;
+  }
+`;
 
 
 
-const JobPost = () => {
+const JobPost = (props) => {
   const singleJobContext = useContext(SingleJobContext);
 
   const { singleJob, singleJobPost } = singleJobContext;
@@ -41,7 +58,7 @@ const JobPost = () => {
     singleJobPost(id)
   }, [])
 
-  const renderSingleJobPost = (obj) => {
+  const renderSingleJobPostHeader = (obj) => {
     if (obj !== null) {
       const { company_logo, company, company_url } = singleJob;
       return (<>
@@ -57,15 +74,40 @@ const JobPost = () => {
           </div>
         </>)
     }
-    return 'Haha, no jobs here';
+    return (
+      <>
+        <h1>Loading...</h1>
+      </>
+    )
+  }
+
+  const renderSingleJobPostBody = (obj) => {
+    if (obj !== null) {
+      const { description, how_to_apply, title, type } = singleJob;
+      return (
+        <section className="job-body-post">
+          <h2>{title}</h2>
+          <h3>{type}</h3>
+          <p>{ReactHtmlParser(description)}</p>
+          <a href={how_to_apply}>Apply</a>
+        </section>
+      )
+    }
+    return (
+      <>
+        <h1>Loading...</h1>
+      </>
+    )
   }
   return (
     <>
       <Header />
       <JobPostHeading>
-        {renderSingleJobPost(singleJob)}
+        {renderSingleJobPostHeader(singleJob)}
       </JobPostHeading>
-      
+      <JobPostBody>
+        {renderSingleJobPostBody(singleJob)}
+      </JobPostBody>
     </>
   );
 };
