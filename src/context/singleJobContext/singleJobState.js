@@ -16,10 +16,10 @@ const SingleJobState = props => {
 
   // Find Single Job Posting
   const singleJobPost = async (id) => {
-    // localStorage.removeItem('singleJob');
+    localStorage.removeItem('singleJob');
 
     try {
-      const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${id}.json`)
+      const res = await axios.get(`https://jobs.github.com/positions/${id}.json`)
       dispatch({
         type: SINGLE_JOB_POST,
         payload: res.data

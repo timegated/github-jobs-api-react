@@ -35,11 +35,11 @@ const JobPost = () => {
 
   const { singleJob, singleJobPost } = singleJobContext;
 
-  // const id = localStorage.getItem('singleJob');
+  const id = localStorage.getItem('singleJob');
 
-  // useEffect(() => {
-  //   singleJobPost(id)
-  // }, [])
+  useEffect(() => {
+    singleJobPost(id)
+  }, [])
 
   const renderSingleJobPost = (obj) => {
     if (obj !== null) {

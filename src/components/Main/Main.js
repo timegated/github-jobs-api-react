@@ -30,7 +30,8 @@ const JobCard = styled.div`
   background: var(--secondary-white);
   border-radius: 15px;
   max-width: 450px;
-
+  box-shadow: 1px 1px 3px #000;
+  
   .job-company-logo {
     position: relative;
     top: -15%;
