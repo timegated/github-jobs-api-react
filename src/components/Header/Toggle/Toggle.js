@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useToggleModes } from '../../../hooks/useToggleModes';
 import moonIcon from '../../../assets/desktop/icon-moon.svg';
 import sunIcon from '../../../assets/desktop/icon-sun.svg';
 
@@ -45,14 +46,16 @@ const ToggleBall = styled.div`
   transform: ${props => props.toggled ? 'translateX(40px)' : 'translateX(0px)'};
 `;
 
-// This component ultimately needs to change the background and text colors between light and dark
-
-const Toggle = ({ themeToggle }) => {
+const Toggle = () => {
   const [isToggled, setToggled] = useState(false);
 
+  const [theme, themeToggle, mountedComponent] = useToggleModes();
+
+  console.log(themeToggle)
+  console.log(theme);
   const handleToggle = () => {
     setToggled(!isToggled);
-    themeToggle();
+    themeToggle()
   };
 
   return (

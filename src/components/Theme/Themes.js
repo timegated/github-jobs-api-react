@@ -1,7 +1,7 @@
-export const light = {
+export const lightTheme = {
   body: 'var(--secondary-lightgrey)',
 };
 
-export const dark = {
+export const darkTheme = {
   body: 'var(--primary-dark-midnight)',
 };

@@ -14,11 +14,13 @@ global.Buffer = Buffer;
 
 const App = () => {
 
-  const [theme, themeToggle, mountedComponent] = useToggleModes();
+  const [theme, mountedComponent] = useToggleModes();
+  console.log('Theme value from useToggleModes', theme);
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   if (!mountedComponent) return <div />;
 
+  console.log('Theme Mode that should return an object',themeMode);
   return (
     <ThemeProvider theme={themeMode}>
       <GlobalStyles />
