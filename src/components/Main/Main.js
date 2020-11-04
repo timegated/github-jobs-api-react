@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import Header from '../Header/Header';
+import Loading from '../Loading/Loading';
 import { Link } from 'react-router-dom';
 import JobsContext from '../../context/jobsContext/jobsContext';
 import SingleJobContext from '../../context/singleJobContext/singleJobContext';
@@ -31,12 +32,20 @@ const JobCard = styled.div`
   border-radius: 15px;
   max-width: 450px;
   box-shadow: 1px 1px 3px #000;
-  
-  .job-company-logo {
+
+  .img-container {
+    width: 50px;
+    height: 50px;
     position: relative;
-    top: -15%;
-    left: 10%;
+      top: -15%;
+      left: 10%;
+    .job-company-logo {
+      height: 50px;
+      width: 75px;
+      object-fit: cover;
+    }
   }
+
   .job-time-type {
     display: inline-flex;
     justify-content: flex-start;
@@ -69,7 +78,7 @@ const JobCard = styled.div`
   }
 `;
 
-const NoJobsHere = styled.h1`
+const NoJobsHere = styled.div`
   width: 50%;
   margin: 10rem auto;
 `;
@@ -84,17 +93,22 @@ const Main = () => {
 
   useEffect(() => {
     loadJobsInitial();
-  },[]);
-
+  }, []);
+ 
   return (
     <>
       <Header />
-      {jobs === null ? <NoJobsHere>No Jobs Here Yet</NoJobsHere>
+      {jobs === null ?
+        <NoJobsHere>
+          <Loading />
+      </NoJobsHere>
         : <JobCardContainer>
           {sortJobs(jobs, convertDate).map(job => {
             return (
               <JobCard key={job.id}>
-                <img className="job-company-logo" src={job.company_logo} alt="The companies logo" width={50} height={50} />
+                <div className="img-container">
+                <img className="job-company-logo" src={job.company_logo} alt="The companies logo"/>
+                </div>
                 <div className="job-time-type">
                   <p>{convertDate(job.created_at)}h ago</p> {" "} <p>{job.type}</p>
                 </div>

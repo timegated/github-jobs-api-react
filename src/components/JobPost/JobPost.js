@@ -1,14 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import SingleJobContext from '../../context/singleJobContext/singleJobContext';
 import Header from '../Header/Header';
+import Loading from '../Loading/Loading';
 import ReactHtmlParser from 'react-html-parser';
+import bgImage from '../../assets/desktop/bg-pattern-detail-footer.svg';
 import styled from 'styled-components';
 
 const JobPostHeading = styled.section`
   position: relative;
   top: -50px;
   display: flex;
-  width: 750px;
+  max-width: 768px;
   margin: auto;
   align-items: center;
   background: var(--secondary-white);
@@ -45,6 +47,24 @@ const JobPostBody = styled.section`
   }
 `;
 
+const HowToApply = styled.section`
+    max-width: 768px;
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    color: var(--secondary-white);
+    background-image: url(${bgImage});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    a {
+      color: var(--secondary-white);
+    }
+ 
+`;
+
 
 
 const JobPost = (props) => {
@@ -76,7 +96,7 @@ const JobPost = (props) => {
     }
     return (
       <>
-        <h1>Loading...</h1>
+       <Loading />
       </>
     )
   }
@@ -85,17 +105,24 @@ const JobPost = (props) => {
     if (obj !== null) {
       const { description, how_to_apply, title, type } = singleJob;
       return (
-        <section className="job-body-post">
+        <>
+          <JobPostBody>
+          <section className="job-body-post">
           <h2>{title}</h2>
           <h3>{type}</h3>
           <p>{ReactHtmlParser(description)}</p>
-          <a href={how_to_apply}>Apply</a>
-        </section>
+          </section>
+          </JobPostBody>
+          <HowToApply>
+            <h3>How To Apply</h3>
+          {ReactHtmlParser(how_to_apply)}
+          </HowToApply>
+          </>
       )
     }
     return (
       <>
-        <h1>Loading...</h1>
+        <Loading />
       </>
     )
   }
@@ -105,9 +132,7 @@ const JobPost = (props) => {
       <JobPostHeading>
         {renderSingleJobPostHeader(singleJob)}
       </JobPostHeading>
-      <JobPostBody>
         {renderSingleJobPostBody(singleJob)}
-      </JobPostBody>
     </>
   );
 };

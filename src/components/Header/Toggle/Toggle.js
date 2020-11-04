@@ -40,30 +40,32 @@ const ToggleBall = styled.div`
   will-change: transform;
   height: 26px;
   width: 26px;
-  background-color: ${props => props.toggled ?  `var(--primary-violet)` : `var(--primary-lightviolet)`};
+  background-color: ${props => props.toggled ? `var(--primary-violet)` : `var(--primary-lightviolet)`};
   z-index: 2;
   transform: ${props => props.toggled ? 'translateX(40px)' : 'translateX(0px)'};
 `;
 
 // This component ultimately needs to change the background and text colors between light and dark
 
-const Toggle = () => {
+const Toggle = ({ themeToggle }) => {
   const [isToggled, setToggled] = useState(false);
-  
+
   const handleToggle = () => {
     setToggled(!isToggled);
+    themeToggle();
   };
-    return (
-      <>
-        <ToggleWrapper>
-          <img className="icon" src={sunIcon} alt="Sun icon for light mode" /> 
-          <ToggleBar onClick={handleToggle} toggle={isToggled} >
-            <ToggleBall toggled={isToggled} />
-          </ToggleBar>
-          <img className="icon" src={moonIcon} alt="Moon icon for dark-mode"  />
-        </ToggleWrapper>
-        </>
-    );
+
+  return (
+    <>
+      <ToggleWrapper>
+        <img className="icon" src={sunIcon} alt="Sun icon for light mode" />
+        <ToggleBar onClick={handleToggle} toggle={isToggled} >
+          <ToggleBall toggled={isToggled} />
+        </ToggleBar>
+        <img className="icon" src={moonIcon} alt="Moon icon for dark-mode" />
+      </ToggleWrapper>
+    </>
+  );
 };
 
 export default Toggle;

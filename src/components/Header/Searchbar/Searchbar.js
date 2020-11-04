@@ -52,7 +52,7 @@ const Input = styled.input`
 
 const SearchButton = styled.button`
   border: none;
-  background:var(--primary-violet);
+  background: var(--primary-violet);
   color: var(--secondary-white);
   border-radius: 15px;
   padding: 1rem 2rem;

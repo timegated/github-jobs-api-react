@@ -29,12 +29,13 @@ const ToggleContainer = styled.div`
   justify-content: space-around;
 `;
 
-const Header = () => {
+const Header = (props) => {
   const singleJobContext = useContext(SingleJobContext);
 
   const { singleJob } = singleJobContext;
 
-  console.log('SingleJobContext in Header component: ' , singleJob);
+  console.log('SingleJobContext in Header component: ', singleJob);
+  console.log(props)
   return (
     <HeaderContainer>
         <ToggleContainer>
