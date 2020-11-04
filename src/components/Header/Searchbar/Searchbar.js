@@ -11,7 +11,7 @@ const SearchForm = styled.form`
   width: 75vw;
   max-width: 1200px;
   min-width: 320px;
-  background: var(--secondary-white);
+  background: ${({theme}) => theme.cardBg};
   align-items: center;
   border-radius: 15px;
 `;
@@ -21,7 +21,7 @@ const FormGroup = styled.div`
   padding: 1rem;
   flex-direction: row;
   justify-content: space-around;
-  background-color: var(--secondary-white);
+  background-color: ${({theme}) => theme.cardBg};
   flex: 1 0 30%;
   
   border-radius: 15px;
@@ -47,7 +47,9 @@ const Input = styled.input`
   font-size: 16px;
   border: none;
   outline: none;
+  color: ${({theme}) => theme.text}
   border-right: 1px solid var(--secondary-dark-darkgray);
+  background: ${({theme}) => theme.cardBg};
 `;
 
 const SearchButton = styled.button`

@@ -15,18 +15,17 @@ global.Buffer = Buffer;
 
 const App = () => {
 
-  const [theme, themeToggle, mountedComponent] = useToggleModes();
+  const [theme, themeToggle] = useToggleModes();
   console.log('Theme value from useToggleModes', theme);
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
-  if (!mountedComponent) return <div />;
 
   return (
     <ThemeProvider theme={themeMode}>
       <GlobalStyles />
         <JobState>
         <SingleJobState>
-          <Header themeToggle={themeToggle}/>
+          <Header themeToggle={themeToggle} />
             <Router>
               <Switch>
                 <Route path='/job/:id' component={JobPost} />

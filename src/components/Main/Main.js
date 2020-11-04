@@ -27,7 +27,7 @@ const JobCard = styled.div`
   margin: 1.25rem;
   padding: 0.75rem;
   flex: 1 0 25%;
-  background: var(--secondary-white);
+  background: ${({ theme }) => theme.cardBg};
   border-radius: 15px;
   max-width: 450px;
   box-shadow: 1px 1px 3px #000;
@@ -56,7 +56,7 @@ const JobCard = styled.div`
 
   .job-link {
     text-decoration: none;
-    color: var(--primary-dark-midnight);
+    color: ${({ theme }) => theme.text};
     margin: 1.5rem 0;
 
     &:hover {

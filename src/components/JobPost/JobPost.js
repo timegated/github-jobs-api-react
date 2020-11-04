@@ -12,12 +12,13 @@ const JobPostHeading = styled.section`
   max-width: 768px;
   margin: auto;
   align-items: center;
-  background: var(--secondary-white);
+  background: ${({theme}) => theme.cardBg};
   padding: 1.5rem;
   border-radius: 10px;
 
   .img-container {
     flex: 1 0 20%;
+    background: ${({theme}) => theme.cardBg}
   }
   .company-name {
     display: flex;
@@ -27,6 +28,10 @@ const JobPostHeading = styled.section`
   }
   .button-container {
     flex: 1 0 20%;
+    background: ${({ theme }) => theme.cardBg};
+    a {
+      color: ${({theme}) => theme.text}
+    }
   }
 `;
 
@@ -36,7 +41,7 @@ const JobPostBody = styled.section`
   text-align: left;
   max-width: 768px;
   margin: auto;
-  background-color: var(--secondary-white);
+  background-color: ${({theme}) => theme.cardBg};
   padding: 1.5rem;
   border-radius: 15px;
 
