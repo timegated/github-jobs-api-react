@@ -40,6 +40,7 @@ const ToggleBall = styled.div`
   will-change: transform;
   height: 26px;
   width: 26px;
+  margin-left: 2px;
   background-color: ${props => props.toggled ? `var(--primary-violet)` : `var(--primary-lightviolet)`};
   z-index: 2;
   transform: ${props => props.toggled ? 'translateX(40px)' : 'translateX(0px)'};

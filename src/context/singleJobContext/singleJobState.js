@@ -4,6 +4,7 @@ import SingleJobContext from './singleJobContext';
 import singleJobReducer from './singleJobReducer';
 import {
   SINGLE_JOB_POST,
+  RESET_SINGLE_JOB
 } from '../types';
 
 const SingleJobState = props => {
@@ -28,11 +29,17 @@ const SingleJobState = props => {
       console.error(error.message);
     }
   };
-
+  const resetSingleJob = () => {
+    dispatch({
+      type: RESET_SINGLE_JOB,
+      payload: null
+    });
+  };
   return (
     <SingleJobContext.Provider value={{
       singleJob: state.singleJob,
-      singleJobPost
+      singleJobPost,
+      resetSingleJob
     }}>
       {props.children}
     </SingleJobContext.Provider>

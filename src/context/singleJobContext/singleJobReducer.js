@@ -1,5 +1,6 @@
 import {
   SINGLE_JOB_POST,
+  RESET_SINGLE_JOB
 } from '../types';
 
 export default (state, action) => {
@@ -9,6 +10,11 @@ export default (state, action) => {
       return {
         ...state,
        singleJob: action.payload
+      }
+    case RESET_SINGLE_JOB:
+      return {
+        ...state,
+        singleJob: action.payload
       }
     default: 
       return state

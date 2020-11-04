@@ -36,11 +36,14 @@ const JobCard = styled.div`
     width: 50px;
     height: 50px;
     position: relative;
-      top: -15%;
-      left: 10%;
+    border-radius: 10px;
+    top: -15%;
+    left: 10%;
+    background-color: ${({theme}) => theme.cardBg};
     .job-company-logo {
-      height: 50px;
-      width: 75px;
+      border-radius: 10px;
+      height: 100%;
+      width: 100%;
       object-fit: cover;
     }
   }
@@ -93,32 +96,32 @@ const Main = () => {
   useEffect(() => {
     loadJobsInitial();
   }, []);
- 
+
   return (
     <>
       {jobs === null ?
         <NoJobsHere>
           <Loading />
-      </NoJobsHere>
+        </NoJobsHere>
         : <JobCardContainer>
           {sortJobs(jobs, convertDate).map(job => {
             return (
               <JobCard key={job.id}>
                 <div className="img-container">
-                <img className="job-company-logo" src={job.company_logo} alt="The companies logo"/>
+                  <img className="job-company-logo" src={job.company_logo} alt="The company logo" />
                 </div>
                 <div className="job-time-type">
                   <p>{convertDate(job.created_at)}h ago</p> {" "} <p>{job.type}</p>
                 </div>
-                  <Link className="job-link" to={`/job/${job.id}`} onClick={() => singleJobPost(job.id)}>{job.title}</Link>
+                <Link className="job-link" to={`/job/${job.id}`} onClick={() => singleJobPost(job.id)}>{job.title}</Link>
                 <p>{job.company}</p>
                 <p>{job.location}</p>
               </JobCard>
             )
           })}
-         
 
-          </JobCardContainer>}
+
+        </JobCardContainer>}
     </>
   );
 };

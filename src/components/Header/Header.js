@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Searchbar from './Searchbar/Searchbar';
 import Toggle from './Toggle/Toggle';
 import styled from 'styled-components';
 import desktopHeaderBg from '../../assets/desktop/bg-pattern-header.svg';
 import logo from '../../assets/desktop/logo.svg';
 
-import SingleJobContext from '../../context/singleJobContext/singleJobContext';
 
 const HeaderContainer = styled.header`
   background: url(${desktopHeaderBg});
@@ -29,18 +28,15 @@ const ToggleContainer = styled.div`
   justify-content: space-around;
 `;
 
-const Header = ({themeToggle}) => {
-  const singleJobContext = useContext(SingleJobContext);
-
-  const { singleJob } = singleJobContext;
-
+const Header = ({ themeToggle }) => {
+  const location = window.location.pathname;
   return (
     <HeaderContainer>
         <ToggleContainer>
           <Logo src={logo} alt="Devjobs logo" />
         <Toggle themeToggle={themeToggle}/>
       </ToggleContainer>
-      {singleJob === null ? <Searchbar /> : " "}
+      {location === '/' ? <Searchbar /> : null}
     </HeaderContainer>
   );
 };
