@@ -29,18 +29,16 @@ const ToggleContainer = styled.div`
   justify-content: space-around;
 `;
 
-const Header = (props) => {
+const Header = ({themeToggle}) => {
   const singleJobContext = useContext(SingleJobContext);
 
   const { singleJob } = singleJobContext;
 
-  console.log('SingleJobContext in Header component: ', singleJob);
-  console.log(props)
   return (
     <HeaderContainer>
         <ToggleContainer>
           <Logo src={logo} alt="Devjobs logo" />
-        <Toggle />
+        <Toggle themeToggle={themeToggle}/>
       </ToggleContainer>
       {singleJob === null ? <Searchbar /> : " "}
     </HeaderContainer>

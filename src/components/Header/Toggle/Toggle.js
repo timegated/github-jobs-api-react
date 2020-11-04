@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useToggleModes } from '../../../hooks/useToggleModes';
 import moonIcon from '../../../assets/desktop/icon-moon.svg';
 import sunIcon from '../../../assets/desktop/icon-sun.svg';
 
@@ -46,18 +45,15 @@ const ToggleBall = styled.div`
   transform: ${props => props.toggled ? 'translateX(40px)' : 'translateX(0px)'};
 `;
 
-const Toggle = () => {
+const Toggle = ({themeToggle}) => {
   const [isToggled, setToggled] = useState(false);
 
-  const [theme, themeToggle, mountedComponent] = useToggleModes();
 
-  console.log(themeToggle)
-  console.log(theme);
   const handleToggle = () => {
     setToggled(!isToggled);
-    themeToggle()
+    themeToggle();
   };
-
+  
   return (
     <>
       <ToggleWrapper>

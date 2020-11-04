@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react';
-import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
 import { Link } from 'react-router-dom';
 import JobsContext from '../../context/jobsContext/jobsContext';
@@ -97,7 +96,6 @@ const Main = () => {
  
   return (
     <>
-      <Header />
       {jobs === null ?
         <NoJobsHere>
           <Loading />

@@ -1,6 +1,7 @@
 import React from 'react'
 import Main from './components/Main/Main';
 import JobPost from './components/JobPost/JobPost';
+import Header from './components/Header/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useToggleModes } from './hooks/useToggleModes';
 import { ThemeProvider } from 'styled-components';
@@ -14,18 +15,18 @@ global.Buffer = Buffer;
 
 const App = () => {
 
-  const [theme, mountedComponent] = useToggleModes();
+  const [theme, themeToggle, mountedComponent] = useToggleModes();
   console.log('Theme value from useToggleModes', theme);
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   if (!mountedComponent) return <div />;
 
-  console.log('Theme Mode that should return an object',themeMode);
   return (
     <ThemeProvider theme={themeMode}>
       <GlobalStyles />
         <JobState>
-          <SingleJobState>
+        <SingleJobState>
+          <Header themeToggle={themeToggle}/>
             <Router>
               <Switch>
                 <Route path='/job/:id' component={JobPost} />

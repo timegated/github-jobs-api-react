@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import SingleJobContext from '../../context/singleJobContext/singleJobContext';
-import Header from '../Header/Header';
 import Loading from '../Loading/Loading';
 import ReactHtmlParser from 'react-html-parser';
 import bgImage from '../../assets/desktop/bg-pattern-detail-footer.svg';
@@ -128,7 +127,6 @@ const JobPost = (props) => {
   }
   return (
     <>
-      <Header />
       <JobPostHeading>
         {renderSingleJobPostHeader(singleJob)}
       </JobPostHeading>
