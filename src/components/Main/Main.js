@@ -96,7 +96,7 @@ const Main = () => {
   useEffect(() => {
     loadJobsInitial();
   }, []);
-
+  
   return (
     <>
       {jobs === null ?
